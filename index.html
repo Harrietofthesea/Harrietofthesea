@@ -99,15 +99,15 @@
             }
             hrs = today.getHours();
             if (hrs >= 4 && hrs <= 12)
-                greet = '🐓 ';
+                greet = '🐓  ';
             else if (hrs >= 12 && hrs <= 15)
-                greet = '☀️ ';
+                greet = '☀️  ';
             else if (hrs >= 15 && hrs <= 18)
-                greet = '🌤 ';
+                greet = '🌤  ';
             else if (hrs >= 18 && hrs <= 21)
-                greet = '🌙 ';
+                greet = '🌙  ';
             else if (hrs >= 21 && hrs <= 4)
-                greet = '🌚 ';
+                greet = '🌚  ';
             document.getElementById('greet').innerHTML = greet;
             document.getElementById('hour').innerHTML = hour;
             document.getElementById('min').innerHTML = minutes;
