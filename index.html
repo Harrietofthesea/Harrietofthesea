@@ -108,7 +108,7 @@
             dateElement.innerHTML = fullDate.split(',')[1].trim();
         }
 
-       function clock() {
+        function clock() {
     var today = new Date();
     var hour = zeros(twelveHour(today.getHours()));
     var minutes = zeros(today.getMinutes());
@@ -131,9 +131,12 @@
         greet = '🌚 ';
 
     document.getElementById('greet').innerHTML = greet;
-    document.getElementById('hour').innerHTML = timeString;
-}
 
+    // Clear the contents of the 'hour' element before updating
+    document.getElementById('hour').innerHTML = '';
+    // Update the 'hour' element with the formatted time string
+    document.getElementById('hour').insertAdjacentHTML('beforeend', timeString);
+}
 
         function twelveHour(hour) {
             if (hour > 12) {
