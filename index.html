@@ -87,7 +87,7 @@ h1 {
 <div class="full-table">
   <div class="table-cell">
     
-    <div class="card">
+    <div class="card" id="card">
         <div class="line" style="font-size: 1.3em;">
             <div class="date" id="day"></div>
         </div>
@@ -123,9 +123,13 @@ h1 {
     dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
     // Display date without day
     dateElement.innerHTML = fullDate.split(',')[1].trim();
-}
 
 
+// Set background color based on the day
+var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            var colors = ['#FF5733', '#FFC300', '#33FF57', '#339DFF', '#B933FF', '#FF337A', '#FF5733'];
+            cardElement.style.background = colors[day];
+        }
 
 
 function clock() {
