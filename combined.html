@@ -30,6 +30,7 @@
 
         .card {
             padding: 10px 20px 10px 20px;
+            background: ##191919;
             border-radius: 2%;
             color: #fff;
             display: inline-block;
@@ -65,7 +66,7 @@
 
         #weather-container {
             margin-top: 20px;
-            margin-left: -10%; /* Adjust the margin as needed */
+            margin-left: -5%; /* Adjust the margin as needed */
             width: 130%; /* Adjust the width as needed */
         }
 
@@ -178,15 +179,6 @@
             date();
             clock();
             setTimeout(dateTime, 500);
-        }
-
-        // Set background color based on the day
-        function setCardBackground() {
-            var today = new Date();
-            var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-            var colors = ['#454B4E', '#364954', '#443F57', '#594A3A', '#594A3A', '#443F57', '#454B4E'];
-            var cardElement = document.getElementById('card');
-            cardElement.style.background = colors[day];
         }
 
         dateTime();
