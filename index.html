@@ -66,21 +66,13 @@ h1 {
     display: inline-block;
 }
 
-.date {
-    display: block;
+.greet, .date {
+    display: inline-block;
     min-width: 162px;
-    /* padding-right: 30px; */
-    /* border-right: 2px solid #295C7B; */
     font-family: 'Helvetica', sans-serif;
     font-size: 1.2em;
 }
-.greet{
-    
-    min-width: 162px;
-    /* padding-right: 30px; */
-    font-family: 'Helvetica', sans-serif;
-    font-size: 1.2em;
-}
+
 
     </style>
 </head>
@@ -92,7 +84,7 @@ h1 {
     
     <div class="card">
         <div class="greet" id="greet"></div>
-      <div class="date" id="date"></div>
+        <div class="date" id="date"></div>        
       <div class="clock">
         <div class="time" id="hour"></div>
         <div class="colon">:</div>
@@ -107,9 +99,12 @@ h1 {
 
 <script>
     function date() {
-var today = new Date();
-document.getElementById('date').innerHTML = today.toDateString();
+    var today = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var fullDate = today.toLocaleDateString('en-US', options).toUpperCase();
+    document.getElementById('date').innerHTML = fullDate;
 }
+
 
 
 function clock() {
@@ -135,7 +130,8 @@ if (hrs >= 4 && hrs <= 12)
      else if (hrs >= 21 && hrs <= 4)
         greet = '🌚 Late Night  ';
 // console.log(today.toLocaleTimeString());
-document.getElementById('greet').innerHTML = greet, document.getElementById('hour').innerHTML = hour;
+document.getElementById('greet').innerHTML = greet;
+document.getElementById('hour').innerHTML = hour;
 document.getElementById('min').innerHTML = minutes;
 document.getElementById('sec').innerHTML = seconds;
 }
@@ -152,7 +148,7 @@ if (hour > 12) {
 // adds zero infront of single digit number
 function zeros(num) {
 if (num < 10) {
-    num = '0' + num
+    num = ' ' + num
 };
 return num;
 }
