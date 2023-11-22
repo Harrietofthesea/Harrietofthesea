@@ -1,87 +1,187 @@
-<!-- ... (previous code remains unchanged) ... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-<script>
-    function date() {
-        var today = new Date();
-        var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-        var fullDate = today.toLocaleDateString('en-US', options);
-
-        var dayElement = document.getElementById('day');
-        var dateElement = document.getElementById('date');
-
-        // Display day in uppercase
-        dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
-        // Display date without day
-        dateElement.innerHTML = fullDate.split(',')[1].trim();
-    }
-
-    function clock() {
-        var today = new Date();
-        var hour = zeros(twelveHour(today.getHours()));
-        var minutes = zeros(today.getMinutes());
-        var seconds = zeros(today.getSeconds());
-        if (today.getHours() >= 12) {
-            seconds += " pm";
-        } else {
-            seconds += " am";
+    <style>
+        /* Your styles remain unchanged */
+        body {
+            background-color: transparent;
+            line-height: 1.6;
         }
-        hrs = today.getHours();
-        if (hrs >= 4 && hrs <= 12)
-            greet = '🐓 ';
-        else if (hrs >= 12 && hrs <= 15)
-            greet = '☀️ ';
-        else if (hrs >= 15 && hrs <= 18)
-            greet = '🌤 ';
-        else if (hrs >= 18 && hrs <= 21)
-            greet = '🌙 ';
-        else if (hrs >= 21 && hrs <= 24)
-            greet = '🌚 ';
-        else if (hrs >= 0 && hrs <= 4)
-            greet = '🌚 ';
-        document.getElementById('greet').innerHTML = greet;
-        document.getElementById('hour').innerHTML = hour;
-        document.getElementById('min').innerHTML = minutes;
-        document.getElementById('sec').innerHTML = seconds;
-    }
 
-    function twelveHour(hour) {
-        if (hour > 12) {
-            return hour -= 12;
-        } else if (hour === 0) {
-            return hour = 12;
-        } else {
-            return hour;
+        h1 {
+            margin-top: 0;
         }
-    }
 
-    function zeros(num) {
-        if (num < 10) {
-            num = '0' + num;
+        .full-table {
+            display: table;
+            height: 100%;
+            width: 100%;
         }
-        return num;
-    }
 
-    function dateTime() {
-        date();
-        clock();
-        setTimeout(dateTime, 500);
-    }
+        .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
 
-    // Set background color based on the day
-    function setCardBackground() {
-        var today = new Date();
-        var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-        var colors = ['#454B4E', '#364954', '#443F57', '#594A3A', '#594A3A', '#443F57', '#454B4E'];
-        var cardElement = document.getElementById('card');
-        cardElement.style.background = colors[day];
-    }
+        .card {
+            padding: 10px 20px 10px 20px;
+            border-radius: 2%;
+            color: #fff;
+            display: inline-block;
+        }
 
-    dateTime();
-    setCardBackground(); // Call this function to set the initial background color
-</script>
+        .clock {
+            display: inline-block;
+            font-family: 'Helvetica', sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
 
-<!-- Weather Widget Code -->
-<a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Current" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
-<script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-</script>
+        .time {
+            display: inline-block;
+            min-width: 37px;
+        }
+
+        .colon {
+            font-size: 1.1em;
+            display: inline-block;
+        }
+
+        .line {
+            margin-top: -5px;
+            margin-bottom: -5px;
+        }
+
+        .greet, .date {
+            display: inline-block;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 1.2em;
+        }
+
+        #weather-container {
+            margin-top: 20px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
+
+    <div class="full-table">
+        <div class="table-cell">
+        
+            <div class="card" id="card">
+                <div class="line" style="font-size: 1.5em;">
+                    <div class="greet" id="greet"></div>
+                    <div class="date" id="date"></div>
+                </div>
+            <div class="line" style="font-size: 1.3em;">
+                    <div class="date" id="day"></div>
+                </div>
+                <div class="line" style="font-size: 0.7em;">
+                    <div class="clock">
+                        <div class="time" id="hour"></div>
+                        <div class="colon">:</div>
+                        <div class="time" id="min"></div>
+                        <div class="colon">:</div>
+                        <div class="time" id="sec"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Weather Widget Container -->
+    <div id="weather-container">
+        <a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Current" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
+        <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+    </div>
+
+    <script>
+        function date() {
+            var today = new Date();
+            var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            var fullDate = today.toLocaleDateString('en-US', options);
+
+            var dayElement = document.getElementById('day');
+            var dateElement = document.getElementById('date');
+
+            // Display day in uppercase
+            dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
+            // Display date without day
+            dateElement.innerHTML = fullDate.split(',')[1].trim();
+        }
+
+        function clock() {
+            var today = new Date();
+            var hour = zeros(twelveHour(today.getHours()));
+            var minutes = zeros(today.getMinutes());
+            var seconds = zeros(today.getSeconds());
+            if (today.getHours() >= 12) {
+                seconds += " pm";
+            } else {
+                seconds += " am";
+            }
+            hrs = today.getHours();
+            if (hrs >= 4 && hrs <= 12)
+                greet = '🐓 ';
+            else if (hrs >= 12 && hrs <= 15)
+                greet = '☀️ ';
+            else if (hrs >= 15 && hrs <= 18)
+                greet = '🌤 ';
+            else if (hrs >= 18 && hrs <= 21)
+                greet = '🌙 ';
+            else if (hrs >= 21 && hrs <= 24)
+                greet = '🌚 ';
+            else if (hrs >= 0 && hrs <= 4)
+                greet = '🌚 ';
+            document.getElementById('greet').innerHTML = greet;
+            document.getElementById('hour').innerHTML = hour;
+            document.getElementById('min').innerHTML = minutes;
+            document.getElementById('sec').innerHTML = seconds;
+        }
+
+        function twelveHour(hour) {
+            if (hour > 12) {
+                return hour -= 12;
+            } else if (hour === 0) {
+                return hour = 12;
+            } else {
+                return hour;
+            }
+        }
+
+        function zeros(num) {
+            if (num < 10) {
+                num = '0' + num;
+            }
+            return num;
+        }
+
+        function dateTime() {
+            date();
+            clock();
+            setTimeout(dateTime, 500);
+        }
+
+        // Set background color based on the day
+        function setCardBackground() {
+            var today = new Date();
+            var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            var colors = ['#454B4E', '#364954', '#443F57', '#594A3A', '#594A3A', '#443F57', '#454B4E'];
+            var cardElement = document.getElementById('card');
+            cardElement.style.background = colors[day];
+        }
+
+        dateTime();
+        setCardBackground(); // Call this function to set the initial background color
+    </script>
+</body>
+</html>
