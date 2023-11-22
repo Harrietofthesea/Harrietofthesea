@@ -67,15 +67,42 @@ h1 {
 }
 
 .line {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
+/* Styles for both greet and date */
 .greet, .date {
     display: inline-block;
     font-family: 'Helvetica', sans-serif;
     font-size: 1.2em;
 }
 
+/* Styles specifically for greet with day class */
+.greet.day {
+    font-size: 1.4em; /* Adjust this value as needed */
+    font-weight: bold;
+}
+
+.day {
+    font-size: 1.4em; /* Adjust this value as needed */
+    font-weight: bold;
+}
+
+/* Styles for date */
+.date {
+    display: inline-block;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.2em;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+/* Additional adjustments */
+.greet {
+    min-width: 162px;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.2em;
+}
 
 
     </style>
@@ -88,9 +115,7 @@ h1 {
     
     <div class="card">
         <div class="line">
-            <div class="greet" id="greet"></div>
-            <div class="date" id="day"></div>
-            <div class="greet"></div>
+            <div class="greet day" id="day"></div>
         </div>
         <div class="line">
             <div class="date" id="date"></div>
@@ -102,6 +127,7 @@ h1 {
                 <div class="time" id="min"></div>
                 <div class="colon">:</div>
                 <div class="time" id="sec"></div>
+                <div class="date day" id="day"></div>
             </div>
         </div>
     </div>
