@@ -127,7 +127,9 @@
                 greet = '🌤 ';
             else if (hrs >= 18 && hrs <= 21)
                 greet = '🌙 ';
-            else if (hrs >= 21 && hrs <= 4)
+            else if (hrs >= 21 && hrs <= 24)
+                greet = '🌚 ';
+            else if (hrs >= 0 && hrs <= 4)
                 greet = '🌚 ';
             document.getElementById('greet').innerHTML = greet;
             document.getElementById('hour').innerHTML = hour;
