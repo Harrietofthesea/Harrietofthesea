@@ -75,7 +75,7 @@
             font-family: 'Helvetica', sans-serif;
             font-size: 1em;
             color: #fff;
-            display: none; /* Initially hide the weather widget */
+            display: none; /* Initially hide the second weather widget */
         }
 
         #toggle-button {
@@ -111,16 +111,24 @@
                         <div class="time" id="sec"></div>
                     </div>
                 </div>
-                <!-- Weather Widget Container -->
+                <!-- First Weather Widget -->
                 <div id="weather-container">
                     <hr style="border: 1px solid #ccc;">
-                    <div id="toggle-button" onclick="toggleWeather()">Toggle Weather</div>
                     <div id="weather-widget">
                         <a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Current" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-cloudcolor="#cac0c0" data-cloudfill="#797474" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
                         <script>
                             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
                         </script>
                     </div>
+                </div>
+                <!-- Toggle Button for Second Weather Widget -->
+                <div id="toggle-button" onclick="toggleWeather()">Toggle Weather</div>
+                <!-- Second Weather Widget (Initially Hidden) -->
+                <div id="weather-widget">
+                    <a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Forecast" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-cloudcolor="#cac0c0" data-cloudfill="#797474" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
+                    <script>
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                    </script>
                 </div>
             </div>
         </div>
@@ -193,6 +201,7 @@
             setTimeout(dateTime, 500);
         }
 
+        // Function to toggle the visibility of the second weather widget
         function toggleWeather() {
             var weatherWidget = document.getElementById('weather-widget');
             weatherWidget.style.display = (weatherWidget.style.display === 'none' || weatherWidget.style.display === '') ? 'block' : 'none';
