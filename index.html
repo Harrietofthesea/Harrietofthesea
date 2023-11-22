@@ -131,12 +131,12 @@
         greet = '🌚 ';
 
     document.getElementById('greet').innerHTML = greet;
-
-    // Clear the contents of the 'hour' element before updating
-    document.getElementById('hour').innerHTML = '';
-    // Update the 'hour' element with the formatted time string
-    document.getElementById('hour').insertAdjacentHTML('beforeend', timeString);
+    document.getElementById('hour').innerHTML = timeString;
+    document.getElementById('min').innerHTML = '';
+    document.getElementById('sec').innerHTML = '';
 }
+
+
 
         function twelveHour(hour) {
             if (hour > 12) {
