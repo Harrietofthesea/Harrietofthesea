@@ -54,8 +54,8 @@
         }
 
         .line {
-            margin-top: 0px;
-            margin-bottom: 0px;
+            margin-top: -5px;
+            margin-bottom: -5px;
         }
 
         .greet, .date {
@@ -72,12 +72,12 @@
         <div class="table-cell">
         
             <div class="card" id="card">
-                <div class="line" style="font-size: 1.3em;">
-                    <div class="date" id="day"></div>
-                </div>
                 <div class="line" style="font-size: 2em;">
                     <div class="greet" id="greet"></div>
                     <div class="date" id="date"></div>
+                </div>
+            <div class="line" style="font-size: 1.3em;">
+                    <div class="date" id="day"></div>
                 </div>
                 <div class="line">
                     <div class="clock">
@@ -162,7 +162,7 @@
         function setCardBackground() {
             var today = new Date();
             var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-            var colors = ['#454B4E', '#529CCA', '#9A6DD7', '#FFA344', '#FFA344', '#9A6DD7', '#454B4E'];
+            var colors = ['#454B4E', '#364954', '#443F57', '#594A3A', '#594A3A', '#443F57', '#454B4E'];
             var cardElement = document.getElementById('card');
             cardElement.style.background = colors[day];
         }
