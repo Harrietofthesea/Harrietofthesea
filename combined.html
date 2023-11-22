@@ -66,6 +66,12 @@
         #weather-container {
             margin-top: 20px; /* Adjust as needed */
         }
+
+        #weather-widget {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 1em;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -91,17 +97,18 @@
                         <div class="time" id="sec"></div>
                     </div>
                 </div>
+                <!-- Weather Widget Container -->
+                <div id="weather-container">
+                    <div id="weather-widget">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Current" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
+                        <script>
+                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                        </script>
+                    </div>
+                </div>
             </div>
             
         </div>
-    </div>
-
-    <!-- Weather Widget Container -->
-    <div id="weather-container">
-        <a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Current" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
-        <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-        </script>
     </div>
 
     <script>
