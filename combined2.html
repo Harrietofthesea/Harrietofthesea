@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* Your styles remain unchanged */
+        body {
+            background-color: transparent;
+            line-height: 1.6;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .full-table {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .card {
+            padding: 10px 20px 10px 20px;
+            border-radius: 2%;
+            border: 2px solid #fff; /* Add this line for the white border */
+            background: #242424;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .clock {
+            display: inline-block;
+            font-family: 'Helvetica', sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .time {
+            display: inline-block;
+            min-width: 37px;
+        }
+
+        .colon {
+            font-size: 1.1em;
+            display: inline-block;
+        }
+
+        .line {
+            margin-top: -5px;
+            margin-bottom: -5px;
+        }
+
+        .greet, .date {
+            display: inline-block;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 1.2em;
+        }
+
+        #weather-container {
+            margin-top: 20px;
+            margin-left: -12%; /* Adjust the margin as needed */
+            width: 125%; /* Adjust the width as needed */
+        }
+
+        #weather-widget {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 1em;
+            color: #fff;
+            display: none; /* Initially hide the weather widget */
+        }
+
+        #toggle-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
+
+    <div class="full-table">
+        <div class="table-cell">
+            <div class="card" id="card">
+                <div class="line" style="font-size: 1.5em;">
+                    <div class="greet" id="greet"></div>
+                    <div class="date" id="date"></div>
+                </div>
+                <div class="line" style="font-size: 1.3em;">
+                    <div class="date" id="day"></div>
+                </div>
+                <div class="line" style="font-size: 0.7em;">
+                    <div class="clock">
+                        <div class="time" id="hour"></div>
+                        <div class="colon">:</div>
+                        <div class="time" id="min"></div>
+                        <div class="colon">:</div>
+                        <div class="time" id="sec"></div>
+                    </div>
+                </div>
+                <!-- Weather Widget Container -->
+                <div id="weather-container">
+                    <hr style="border: 1px solid #ccc;">
+                    <div id="toggle-button" onclick="toggleWeather()">Toggle Weather</div>
+                    <div id="weather-widget">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/n33d71150d31/katoomba/" data-label_1="KATOOMBA" data-label_2="WEATHER" data-font="Helvetica" data-mode="Current" data-theme="gray" data-basecolor="#191919" data-highcolor="#ffa78d" data-lowcolor="#52cfa3" data-suncolor="#f7dd70" data-mooncolor="#d2fcec" data-cloudcolor="#cac0c0" data-cloudfill="#797474" data-raincolor="#52cfa3" >KATOOMBA WEATHER</a>
+                        <script>
+                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function date() {
+            var today = new Date();
+            var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            var fullDate = today.toLocaleDateString('en-US', options);
+
+            var dayElement = document.getElementById('day');
+            var dateElement = document.getElementById('date');
+
+            // Display day in uppercase
+            dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
+            // Display date without day
+            dateElement.innerHTML = fullDate.split(',')[1].trim();
+        }
+
+        function clock() {
+            var today = new Date();
+            var hour = zeros(twelveHour(today.getHours()));
+            var minutes = zeros(today.getMinutes());
+            var seconds = zeros(today.getSeconds());
+            if (today.getHours() >= 12) {
+                seconds += " pm";
+            } else {
+                seconds += " am";
+            }
+            hrs = today.getHours();
+            if (hrs >= 4 && hrs <= 12)
+                greet = '🐓 ';
+            else if (hrs >= 12 && hrs <= 15)
+                greet = '☀️ ';
+            else if (hrs >= 15 && hrs <= 18)
+                greet = '🌤 ';
+            else if (hrs >= 18 && hrs <= 21)
+                greet = '🌙 ';
+            else if (hrs >= 21 && hrs <= 24)
+                greet = '🌚 ';
+            else if (hrs >= 0 && hrs <= 4)
+                greet = '🌚 ';
+            document.getElementById('greet').innerHTML = greet;
+            document.getElementById('hour').innerHTML = hour;
+            document.getElementById('min').innerHTML = minutes;
+            document.getElementById('sec').innerHTML = seconds;
+        }
+
+        function twelveHour(hour) {
+            if (hour > 12) {
+                return hour -= 12;
+            } else if (hour === 0) {
+                return hour = 12;
+            } else {
+                return hour;
+            }
+        }
+
+        function zeros(num) {
+            if (num < 10) {
+                num = '0' + num;
+            }
+            return num;
+        }
+
+        function dateTime() {
+            date();
+            clock();
+            setTimeout(dateTime, 500);
+        }
+
+        function toggleWeather() {
+            var weatherWidget = document.getElementById('weather-widget');
+            weatherWidget.style.display = (weatherWidget.style.display === 'none' || weatherWidget.style.display === '') ? 'block' : 'none';
+        }
+
+        dateTime();
+        setCardBackground(); // Call this function to set the initial background color
+    </script>
+</body>
+</html>
