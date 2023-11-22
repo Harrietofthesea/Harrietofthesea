@@ -110,8 +110,7 @@
 
         function clock() {
     var today = new Date();
-    var hour = zeros(twelveHour(today.getHours()));
-    var minutes = zeros(today.getMinutes());
+
     var ampm = today.getHours() >= 12 ? 'pm' : 'am';
 
     var timeString = `${hour}:${minutes}${ampm}`;
