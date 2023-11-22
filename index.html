@@ -126,8 +126,11 @@ h1 {
 
 
 // Set background color based on the day
-var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+function setCardBackground(){
+            var today = new Date();
+            var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
             var colors = ['#454B4E', '#364954', '#594A3A', '#443F57', '#594A3A', '#443F57', '#454B4E'];
+            var cardElement = document.getElementById('card');
             cardElement.style.background = colors[day];
         }
 
@@ -185,6 +188,7 @@ setTimeout(dateTime, 500);
 }
 
 dateTime()
+setCardBackground(); // Call this function to set the initial background color
 // END
 </script>
 
