@@ -115,10 +115,8 @@ h1 {
     
     <div class="card">
         <div class="line">
-            <div class="greet day" id="day"></div>
-        </div>
-        <div class="line">
-            <div class="date" id="date"></div>
+            <div class="greet day" id="greetDay"></div>
+            <div class="date" id="greetDate"></div>
         </div>
         <div class="line">
             <div class="clock">
@@ -127,7 +125,6 @@ h1 {
                 <div class="time" id="min"></div>
                 <div class="colon">:</div>
                 <div class="time" id="sec"></div>
-                <div class="date day" id="day"></div>
             </div>
         </div>
     </div>
@@ -138,44 +135,40 @@ h1 {
 
 <script>
    function date() {
-    var today = new Date();
-    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    var fullDate = today.toLocaleDateString('en-US', options);
-    
-    var dayElement = document.getElementById('day');
-    var dateElement = document.getElementById('date');
+        var today = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var fullDate = today.toLocaleDateString('en-US', options);
+        
+        var dayElement = document.getElementById('greetDay'); // Update to 'greetDay'
+        var dateElement = document.getElementById('greetDate'); // Update to 'greetDate'
 
-    // Display day in uppercase
-    dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
-    // Display date without day
-    dateElement.innerHTML = fullDate.split(',')[1].trim();
-}
+        // Display day in uppercase
+        dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
+        // Display date without day
+        dateElement.innerHTML = fullDate.split(',')[1].trim();
+    }
 
-
-
-
-function clock() {
-var today = new Date();
-var hour = zeros(twelveHour(today.getHours()));
-var minutes = zeros(today.getMinutes());
-var seconds = zeros(today.getSeconds());
-if(today.getHours() >=12){
-    seconds+=" pm"
-}
-else{
-    seconds+=" am"
-}
-hrs = today.getHours();
-if (hrs >= 4 && hrs <= 12)
-        greet = '🐓 Morning  ';
-    else if (hrs >= 12 && hrs <= 15)
-        greet = '☀️ ';
-    else if (hrs >= 15 && hrs <= 18)
-        greet = '🌤 Late Afternoon  ';
-    else if (hrs >= 18 && hrs <= 21)
-        greet = '🌙 Night  ';
-     else if (hrs >= 21 && hrs <= 4)
-        greet = '🌚 Late Night  ';
+    function clock() {
+        var today = new Date();
+        var hour = zeros(twelveHour(today.getHours()));
+        var minutes = zeros(today.getMinutes());
+        var seconds = zeros(today.getSeconds());
+        if (today.getHours() >= 12) {
+            seconds += " pm";
+        } else {
+            seconds += " am";
+        }
+        hrs = today.getHours();
+        if (hrs >= 4 && hrs <= 12)
+            greet = '🐓 Morning  ';
+        else if (hrs >= 12 && hrs <= 15)
+            greet = '☀️ ';
+        else if (hrs >= 15 && hrs <= 18)
+            greet = '🌤 Late Afternoon  ';
+        else if (hrs >= 18 && hrs <= 21)
+            greet = '🌙 Night  ';
+        else if (hrs >= 21 || (hrs >= 0 && hrs <= 4)) // Fix the condition for late night
+            greet = '🌚 Late Night  ';
 // console.log(today.toLocaleTimeString());
 document.getElementById('greet').innerHTML = greet;
 document.getElementById('hour').innerHTML = hour;
