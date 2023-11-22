@@ -114,7 +114,7 @@
     var minutes = zeros(today.getMinutes());
     var ampm = today.getHours() >= 12 ? 'pm' : 'am';
 
-    var timeString = `${hour} : ${minutes} ${ampm}`;
+    var timeString = `${hour}:${minutes}${ampm}`;
 
     var hrs = today.getHours();
     var greet = '';
@@ -135,6 +135,7 @@
     document.getElementById('min').innerHTML = '';
     document.getElementById('sec').innerHTML = '';
 }
+
 
         function twelveHour(hour) {
             if (hour > 12) {
