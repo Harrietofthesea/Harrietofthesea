@@ -82,10 +82,10 @@
                 <div class="line" style="font-size: 0.7em;">
                     <div class="clock">
                         <div class="time" id="hour"></div>
-                        <div class="colon" id="colon1">:</div>
+                        <div class="colon">:</div>
                         <div class="time" id="min"></div>
-                        <div class="colon" id="colon2">:</div>
-                        <div class="time" id="sec"></div>
+                        <div class="colon" id="colonSec" style="visibility: hidden;">:</div>
+                        <div class="time" id="sec" style="visibility: hidden;"></div>
                     </div>
                 </div>
             </div>
@@ -134,11 +134,16 @@
         document.getElementById('greet').innerHTML = greet;
         document.getElementById('hour').innerHTML = timeString;
         document.getElementById('min').innerHTML = minutes;
-        document.getElementById('sec').innerHTML = seconds;
 
-        // Hide colon elements if seconds are not displayed
-        document.getElementById('colon1').style.visibility = seconds ? 'visible' : 'hidden';
-        document.getElementById('colon2').style.visibility = seconds ? 'visible' : 'hidden';
+        // Display seconds only if not zero
+        if (parseInt(seconds) > 0) {
+            document.getElementById('colonSec').style.visibility = 'visible';
+            document.getElementById('sec').style.visibility = 'visible';
+            document.getElementById('sec').innerHTML = seconds;
+        } else {
+            document.getElementById('colonSec').style.visibility = 'hidden';
+            document.getElementById('sec').style.visibility = 'hidden';
+        }
     }
 
 
