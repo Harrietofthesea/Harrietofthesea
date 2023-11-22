@@ -66,12 +66,16 @@ h1 {
     display: inline-block;
 }
 
+.line {
+    margin-bottom: 10px;
+}
+
 .greet, .date {
     display: inline-block;
-    min-width: 162px;
     font-family: 'Helvetica', sans-serif;
     font-size: 1.2em;
 }
+
 
 
     </style>
@@ -83,27 +87,44 @@ h1 {
   <div class="table-cell">
     
     <div class="card">
-        <div class="greet" id="greet"></div>
-        <div class="date" id="date"></div>        
-      <div class="clock">
-        <div class="time" id="hour"></div>
-        <div class="colon">:</div>
-        <div class="time" id="min"></div>
-        <div class="colon">:</div>
-        <div class="time" id="sec"></div>
-      </div>
+        <div class="line">
+            <div class="greet" id="greet"></div>
+            <div class="date" id="day"></div>
+            <div class="greet"></div>
+        </div>
+        <div class="line">
+            <div class="date" id="date"></div>
+        </div>
+        <div class="line">
+            <div class="clock">
+                <div class="time" id="hour"></div>
+                <div class="colon">:</div>
+                <div class="time" id="min"></div>
+                <div class="colon">:</div>
+                <div class="time" id="sec"></div>
+            </div>
+        </div>
     </div>
+    
     
   </div>
 </div>
 
 <script>
-    function date() {
+   function date() {
     var today = new Date();
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    var fullDate = today.toLocaleDateString('en-US', options).toUpperCase();
-    document.getElementById('date').innerHTML = fullDate;
+    var fullDate = today.toLocaleDateString('en-US', options);
+    
+    var dayElement = document.getElementById('day');
+    var dateElement = document.getElementById('date');
+
+    // Display day in uppercase
+    dayElement.innerHTML = fullDate.split(',')[0].toUpperCase();
+    // Display date without day
+    dateElement.innerHTML = fullDate.split(',')[1].trim();
 }
+
 
 
 
