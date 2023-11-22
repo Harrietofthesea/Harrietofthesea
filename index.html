@@ -36,11 +36,6 @@
             display: inline-block;
         }
 
-        .card:hover {
-            margin-top: 2px;
-            box-shadow: none;
-        }
-
         .clock {
             display: inline-block;
             font-family: 'Helvetica', sans-serif;
@@ -167,7 +162,7 @@
         function setCardBackground() {
             var today = new Date();
             var day = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-            var colors = ['#FF5733', '#FFC300', '#33FF57', '#339DFF', '#B933FF', '#FF337A', '#FF5733'];
+            var colors = ['#454B4E', '#529CCA', '#9A6DD7', '#FFA344', '#FFA344', '#9A6DD7', '#454B4E'];
             var cardElement = document.getElementById('card');
             cardElement.style.background = colors[day];
         }
